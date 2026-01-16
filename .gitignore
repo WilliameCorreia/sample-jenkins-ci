@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.env
+
+# Jenkins Local (Dados de execução e segredos)
+jenkins_home/
+
+# IDE e Editores
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db

@@ -2,18 +2,19 @@ services:
   jenkins:
     build: ./jenkins
     container_name: jenkins-ci
-    user: root  # Necessário para acessar o docker.sock sem conflito de permissões
+    user: root
     privileged: true
     ports:
       - "8080:8080"
     environment:
-      DOCKER_HOST: unix:///run/user/1000/docker.sock
+      # CORREÇÃO PARA WINDOWS:
+      DOCKER_HOST: unix:///var/run/docker.sock
       JENKINS_HOME_HOST: ./jenkins_home
       TZ: Etc/GMT+3
     volumes:
       - ./jenkins_home:/var/jenkins_home
-      - /run/user/1000/docker.sock:/run/user/1000/docker.sock
+      # CORREÇÃO PARA WINDOWS:
+      - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - default
-      # - kind
     restart: unless-stopped
