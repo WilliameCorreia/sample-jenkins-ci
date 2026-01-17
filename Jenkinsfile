@@ -94,11 +94,10 @@ pipeline {
             git config user.name "jenkins"
             git config user.email "jenkins@local"
 
-            git commit -m "Update deploy image tag to ${TAG}"
-            git push https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/WilliameCorreia/sample-jenkins-ci.git HEAD:main
-
+            # Cria a tag localmente
             git tag -a "$TAG" -m "Release $TAG"
 
+            # Envia APENAS a tag para o repositório remoto
             git push https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/WilliameCorreia/sample-jenkins-ci.git "$TAG"
 
             docker tag "${IMAGE}" "sample-python-ci:${TAG}"
