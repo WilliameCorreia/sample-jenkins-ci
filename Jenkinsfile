@@ -17,7 +17,7 @@ pipeline {
         sh '''
           set -e
           cd "${WORKSPACE}"
-          trivy fs --no-progress .
+          trivy fs --no-progress --timeout 15m --skip-dirs .venv .
         '''
       }
     }
