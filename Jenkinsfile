@@ -94,14 +94,12 @@ pipeline {
             git config user.name "jenkins"
             git config user.email "jenkins@local"
 
-            sed -i "s|sample-python-ci:.*|sample-python-ci:${TAG}|" k8s/deploy.yaml
-            git add k8s/deploy.yaml
             git commit -m "Update deploy image tag to ${TAG}"
-            git push https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/rodrigo-galba/sample-jenkins-ci.git HEAD:main
+            git push https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/WilliameCorreia/sample-jenkins-ci.git HEAD:main
 
             git tag -a "$TAG" -m "Release $TAG"
 
-            git push https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/rodrigo-galba/sample-jenkins-ci.git "$TAG"
+            git push https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/WilliameCorreia/sample-jenkins-ci.git "$TAG"
 
             docker tag "${IMAGE}" "sample-python-ci:${TAG}"
           '''
