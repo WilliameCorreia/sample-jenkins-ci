@@ -17,3 +17,21 @@ services:
       - default
       # - kind
     restart: unless-stopped
+  sonarqube:
+    image: sonarqube:lts
+    container_name: sonarqube
+    ports:
+      - "9000:9000"
+    volumes:
+      - sonarqube-data:/opt/sonarqube/data
+      - sonarqube-extensions:/opt/sonarqube/extensions
+      - sonarqube-logs:/opt/sonarqube/logs
+    restart: unless-stopped
+volumes:
+  sonarqube-data:
+  sonarqube-extensions:
+  sonarqube-logs:
+# networks:
+#   kind:
+#     external: true
+#     name: kind
